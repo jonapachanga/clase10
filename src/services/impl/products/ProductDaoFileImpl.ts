@@ -1,4 +1,4 @@
-import FileContainer from "../../containers/FileContainer";
+import FileContainer from "../../../containers/FileContainer";
 
 class ProductDaoFileImpl extends FileContainer {
     constructor() {

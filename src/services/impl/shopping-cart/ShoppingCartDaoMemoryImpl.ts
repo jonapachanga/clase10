@@ -1,11 +1,13 @@
-import FileContainer from "../../containers/FileContainer";
-import { IShoppingCart } from "../../models/shopping-cart.model";
-import IProduct from "../../models/product.model";
-import { ShoppingCartService } from "../shopping-cart.service";
+import { IShoppingCart } from "../../../models/shopping-cart.model";
+import { ShoppingCartService } from "../../shopping-cart.service";
 
-class ShoppingCartDaoFileImpl extends FileContainer implements ShoppingCartService {
+import IProduct from "../../../models/product.model";
+
+import MemoryContainer from "../../../containers/MemoryContainer";
+
+class ShoppingCartDaoFileImpl extends MemoryContainer implements ShoppingCartService {
     constructor() {
-        super('db/shopping_cart.json');
+        super();
     }
 
     public async removeProduct(shoppingCartId, productId): Promise<IShoppingCart> {

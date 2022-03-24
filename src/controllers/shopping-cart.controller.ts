@@ -1,17 +1,17 @@
 import { NextFunction, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import ShoppingCartDaoFileImpl from "../services/impl/ShoppingCartDaoFileImpl";
 import { IShoppingCart } from "../models/shopping-cart.model";
+import ShoppingCartDaoMemoryImpl from "../services/impl/shopping-cart/ShoppingCartDaoMemoryImpl";
 
 class ShoppingCartController {
-    public shoppingCartDaoFile = new ShoppingCartDaoFileImpl();
+    public shoppingCartDao = new ShoppingCartDaoMemoryImpl();
 
     constructor() {
     }
 
     public getAll = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
         try {
-            const shoppingCarts: IShoppingCart[] = await this.shoppingCartDaoFile.findAll()
+            const shoppingCarts: IShoppingCart[] = await this.shoppingCartDao.findAll()
 
             res.status(StatusCodes.OK).json(shoppingCarts);
         } catch (e) {
@@ -24,7 +24,7 @@ class ShoppingCartController {
         try{
             const shoppingCartId = req.params.id;
 
-            const shoppingCart: IShoppingCart = await this.shoppingCartDaoFile.findById(shoppingCartId);
+            const shoppingCart: IShoppingCart = await this.shoppingCartDao.findById(shoppingCartId);
 
             res.status(StatusCodes.OK).json({ products: shoppingCart.products });
         } catch (e) {
@@ -39,7 +39,7 @@ class ShoppingCartController {
             newShoppingCart.createdAt = Date.now();
             newShoppingCart.modifiedAt = Date.now();
 
-            const shoppingCart: IShoppingCart = await this.shoppingCartDaoFile.create(newShoppingCart);
+            const shoppingCart: IShoppingCart = await this.shoppingCartDao.create(newShoppingCart);
 
             res.status(StatusCodes.OK).json(shoppingCart);
         } catch (e) {
@@ -54,7 +54,7 @@ class ShoppingCartController {
 
             shoppingCartToUpdate.modifiedAt = Date.now();
 
-            const shoppingCart: IShoppingCart = await this.shoppingCartDaoFile.update(shoppingCartId, shoppingCartToUpdate);
+            const shoppingCart: IShoppingCart = await this.shoppingCartDao.update(shoppingCartId, shoppingCartToUpdate);
 
             res.status(StatusCodes.OK).json(shoppingCart);
         } catch (e) {
@@ -66,7 +66,7 @@ class ShoppingCartController {
         try{
             const shoppingCartId = req.params.id;
 
-            await this.shoppingCartDaoFile.delete(shoppingCartId);
+            await this.shoppingCartDao.delete(shoppingCartId);
 
             res.status(StatusCodes.OK);
         } catch (e) {
@@ -79,7 +79,7 @@ class ShoppingCartController {
             const shoppingCartId = req.params.id;
             const productId = req.params.id_prod;
 
-            const updatedShoppingCart = await this.shoppingCartDaoFile.removeProduct(shoppingCartId, productId);
+            const updatedShoppingCart = await this.shoppingCartDao.removeProduct(shoppingCartId, productId);
 
             res.status(StatusCodes.OK).json(updatedShoppingCart);
         } catch (e) {

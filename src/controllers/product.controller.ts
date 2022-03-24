@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import IProduct from "../models/product.model";
-import ProductDaoFileImpl from "../services/impl/ProductDaoFileImpl";
+import ProductDaoFileImpl from "../services/impl/products/ProductDaoFileImpl";
 
 class ProductController {
     public productDaoFile = new ProductDaoFileImpl();
