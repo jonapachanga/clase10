@@ -1,0 +1,28 @@
+{
+  "name": "ecommerce",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/main.js",
+  "scripts": {
+    "webpack": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run webpack -- --mode production --watch",
+    "start": "nodemon"
+  },
+  "keywords": [],
+  "author": "Jonatan Eseiza",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-loader": "^8.3.0",
+    "typescript": "^4.6.2",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.13",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "http-status-codes": "^2.2.0",
+    "uuid": "^8.3.2"
+  }
+}
