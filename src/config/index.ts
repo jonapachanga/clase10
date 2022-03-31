@@ -2,4 +2,4 @@ import { config } from "dotenv";
 
 config();
 
-export const { PORT } = process.env;
+export const { PORT, ORIGIN, MONGO_HOST } = process.env;

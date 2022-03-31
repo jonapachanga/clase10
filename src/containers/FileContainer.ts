@@ -3,11 +3,11 @@ import { ApiException } from "../exceptions/ApiException";
 import { AbstractPersistence } from "../services/AbstractPersistence";
 import { v4 as uuidv4 } from 'uuid';
 
-class FileContainer implements AbstractPersistence {
+abstract class FileContainer implements AbstractPersistence {
     public path: string;
     public objs: any[];
 
-    constructor(path: string) {
+    protected constructor(path: string) {
         this.path = `src/${path}`;
 
         const objsLoad = this._readFile();

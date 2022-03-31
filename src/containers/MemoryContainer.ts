@@ -3,10 +3,10 @@ import { ApiException } from "../exceptions/ApiException";
 
 import { v4 as uuidv4 } from 'uuid';
 
-class MemoryContainer implements AbstractPersistence {
+abstract class MemoryContainer implements AbstractPersistence {
     public objs: any[];
 
-    constructor() {
+    protected constructor() {
         this.objs = [];
     }
 

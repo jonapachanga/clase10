@@ -1,14 +1,6 @@
-// export class Product implements IProduct {
-//     id?: number;
-//     name?: string;
-//     description?: string;
-//     code?: string;
-//     imageUrl?: string;
-//     price?: number;
-//     stock?: number;
-// }
+import { Document } from 'mongoose';
 
-export default interface IProduct {
+export default interface IProduct extends Document {
     id?: number;
     name?: string;
     description?: string;
@@ -16,6 +8,6 @@ export default interface IProduct {
     imageUrl?: string;
     price?: number;
     stock?: number;
-    createdAt: Date;
-    modifiedAt: Date;
+    createdAt?: Date;
+    modifiedAt?: Date;
 }
